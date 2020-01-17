@@ -51,6 +51,10 @@ public class IPLleagueAnalysisCSV {
         return avg;
     }
 
+    public double getStrikeRate() {
+        return strikeRate;
+    }
+
     @Override
     public String toString() {
         return "IPLleagueAnalysisCSV{" +

@@ -33,4 +33,13 @@ public class IPLleagueTest {
         exception.expect(IPLException.class);
         ipLleagueAnalysis.loadIplRunCensusData(WRONG_RUN_PATH);
     }
+
+    @Test
+    public void givenMostRunFile_ShouldReturnTopStriker() throws IPLException, IOException, CSVBuilderException {
+        IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis();
+        ipLleagueAnalysis.loadIplRunCensusData(MOSTRUNSFILE);
+        List<IPLleagueAnalysisCSV> sortedCensusData = ipLleagueAnalysis.sortingPlayersForStriker();
+        System.out.println(sortedCensusData);
+        Assert.assertEquals(333.33,sortedCensusData.get(0).strikeRate,0);
+    }
 }

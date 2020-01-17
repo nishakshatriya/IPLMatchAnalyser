@@ -41,6 +41,13 @@ public class IPLleagueAnalysis {
         return sortedList;
     }
 
+    public List sortingPlayersForStriker() throws IPLException {
+        if (list == null || list.size() == 0){
+            throw new IPLException("NO_CENSUS_DATA", IPLException.ExceptionType.NO_DATA_AVAIL);
+        }
+        List sortedList = list.stream().sorted(Comparator.comparing(IPLleagueAnalysisCSV::getStrikeRate).reversed()).collect(Collectors.toList());
+        return sortedList;
+    }
 }
 
 
