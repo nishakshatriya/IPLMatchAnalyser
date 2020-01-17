@@ -26,7 +26,7 @@ public class IPLleagueAnalysisCSV {
     public String highScore;
 
     @CsvBindByName(column = "Avg", required = true)
-    public String avg;
+    public double avg;
 
     @CsvBindByName(column = "BF", required = true)
     public int ballFest;
@@ -47,6 +47,10 @@ public class IPLleagueAnalysisCSV {
     public int sixer;
 
 
+    public double getAvg() {
+        return avg;
+    }
+
     @Override
     public String toString() {
         return "IPLleagueAnalysisCSV{" +
@@ -66,4 +70,6 @@ public class IPLleagueAnalysisCSV {
                 ", sixer=" + sixer +
                 '}';
     }
+
+
 }
