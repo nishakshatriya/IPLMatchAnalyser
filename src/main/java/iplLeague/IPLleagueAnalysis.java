@@ -16,19 +16,19 @@ public class IPLleagueAnalysis {
 
     List<IPLleagueAnalysisCSV> list = new ArrayList<>();
 
-    public int loadIplRunCensusData(String csvFilePath) throws IPLException, IOException, CSVBuilderException {
+    public List loadIplRunCensusData(String csvFilePath) throws IPLException, IOException, CSVBuilderException {
 
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
             ICSVBuilder icsvBuilder = CSVBuilderFactory.CreateCSVBuilder();
             List playersList = icsvBuilder.getCSVInList(reader, IPLleagueAnalysisCSV.class);
             playersList.stream().filter(CensusData -> list.add((IPLleagueAnalysisCSV) CensusData)).collect(Collectors.toList());
-            return playersList.size();
+            return playersList;
         } catch (IOException e) {
             e.printStackTrace();
         } catch (CSVBuilderException e) {
             throw new IPLException(e.getMessage(), e.type.name());
         }
-        return 0;
+        return null;
     }
 
     public List sortingPlayersDataInReverse() throws IPLException {

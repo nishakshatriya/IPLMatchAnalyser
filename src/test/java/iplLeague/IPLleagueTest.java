@@ -14,8 +14,8 @@ public class IPLleagueTest {
     @Test
     public void givenMostRunFile_ShouldReturnCorrectData() throws IOException, IPLException, CSVBuilderException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis();
-        int totalRecords = ipLleagueAnalysis.loadIplRunCensusData(MOSTRUNSFILE);
-        Assert.assertEquals(101,totalRecords);
+        List totalRecords = ipLleagueAnalysis.loadIplRunCensusData(MOSTRUNSFILE);
+        Assert.assertEquals(101,totalRecords.size());
     }
 
     @Test
