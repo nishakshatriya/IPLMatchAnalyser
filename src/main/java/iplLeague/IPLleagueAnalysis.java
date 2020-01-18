@@ -8,10 +8,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -58,6 +55,19 @@ public class IPLleagueAnalysis {
         Comparator<IPLleagueAnalysisCSV> codeCsvComparator = (player1, player2) -> new Integer((player1.fours*4 + player1.sixer*6) > (player2.fours*4 + player2.sixer*6) ? -1 : 1);
         Collections.sort(sortedList,codeCsvComparator);
         return sortedList;
+    }
+
+    public List sortingPlayersByStrikeRates() throws IPLException {
+        if (list == null || list.size() == 0){
+            throw new IPLException("NO_CENSUS_DATA", IPLException.ExceptionType.NO_DATA_AVAIL);
+        }
+        List sortedList = list.stream().collect(Collectors.toList());
+        Comparator<IPLleagueAnalysisCSV> codeCsvComparator = (player1, player2) -> new Integer((player1.fours*4 + player1.sixer*6) > (player2.fours*4 + player2.sixer*6) ? -1 : 1);
+        codeCsvComparator = codeCsvComparator.thenComparing(IPLleagueAnalysisCSV::getStrikeRate);
+        Collections.sort(sortedList,codeCsvComparator);
+        return sortedList;
+
+
     }
 }
 
