@@ -52,11 +52,20 @@ public class IPLleagueTest {
     }
 
     @Test
-    public void givenMostRunFile_ShoulReturn() throws IPLException, IOException, CSVBuilderException {
+    public void givenMostRunFile_ShoulReturnPlayerWithHighest4and6AndHighestStrikes() throws IPLException, IOException, CSVBuilderException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis();
         ipLleagueAnalysis.loadIplRunCensusData(MOSTRUNSFILE);
         List<Batsmans> sortedCensusData = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.SIXES_FOUR_STRIKES);
         System.out.println(sortedCensusData);
         Assert.assertEquals("Andre Russell",sortedCensusData.get(0).player);
     }
+
+    @Test
+    public void givenMostRunFile_ShouldReturnGreatAvgAndHighStikePlayer() throws IPLException, IOException, CSVBuilderException {
+        IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis();
+        ipLleagueAnalysis.loadIplRunCensusData(MOSTRUNSFILE);
+        List<Batsmans> sortedcensusData = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.GREATAVG_BESTSTRIKE);
+        Assert.assertEquals("MS Dhoni",sortedcensusData.get(0).player);
+    }
+
 }
