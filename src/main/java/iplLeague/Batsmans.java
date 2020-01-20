@@ -2,7 +2,7 @@ package iplLeague;
 //POS,PLAYER,Mat,Inns,NO,Runs,HS,Avg,BF,SR,100,50,4s,6s
 import com.opencsv.bean.CsvBindByName;
 
-public class BatsmansAnalyse {
+public class Batsmans {
 
     @CsvBindByName(column = "POS", required = true)
     public int position;
@@ -57,7 +57,7 @@ public class BatsmansAnalyse {
 
     @Override
     public String toString() {
-        return "BatsmansAnalyse{" +
+        return "Batsmans{" +
                 "position='" + position + '\'' +
                 ", player=" + player +
                 ", match=" + match +
