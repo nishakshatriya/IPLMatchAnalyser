@@ -3,7 +3,7 @@ package iplLeague;
 public class IPLException extends Exception {
 
     enum ExceptionType {
-        NO_DATA_AVAIL
+        NO_DATA_AVAIL,FILE_ERROR
     }
 
     ExceptionType type;
