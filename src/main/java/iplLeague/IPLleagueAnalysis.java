@@ -20,7 +20,6 @@ public class IPLleagueAnalysis {
         Comparator<Batsmans> comparator = new Sorting().getField(sortfields);
         ArrayList arrayList = (ArrayList) list.stream().sorted(comparator)
                 .collect(Collectors.toList());
-        System.out.println(arrayList);
         return arrayList;
     }
 }

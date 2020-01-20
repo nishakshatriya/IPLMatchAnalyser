@@ -14,7 +14,6 @@ public class IPLleagueTest {
     public void givenMostRunFile_ShouldReturnCorrectData() throws IOException, IPLException, CSVBuilderException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis();
         int totalRecords = ipLleagueAnalysis.loadingData(MOSTRUNSFILE);
-        System.out.println(totalRecords);
         Assert.assertEquals(101,totalRecords);
     }
 
@@ -68,5 +67,13 @@ public class IPLleagueTest {
         ipLleagueAnalysis.loadingData(MOSTRUNSFILE);
         List<Batsmans> sortedcensusData = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.GREATAVG_BESTSTRIKE);
         Assert.assertEquals("MS Dhoni",sortedcensusData.get(0).player);
+    }
+
+    @Test
+    public void givenMostRunFile_ShouldReturnMaxRunAndBestAvg() throws IPLException, IOException, CSVBuilderException {
+        IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis();
+        ipLleagueAnalysis.loadingData(MOSTRUNSFILE);
+        List<Batsmans> sortedcensusData = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.MAX_RUN_BEST_AVG);
+        Assert.assertEquals("David Warner",sortedcensusData.get(0).player);
     }
 }
