@@ -31,41 +31,11 @@ public class IPLleagueAnalysis {
         return null;
     }
 
-    public List<Batsmans> sortingPlayersDataInReverse() throws IPLException {
-        if(list == null || list.size() == 0) {
-            throw new IPLException("NO_CENSUS_DATA", IPLException.ExceptionType.NO_DATA_AVAIL);
-        }
-        List sortedList = list.stream().sorted(Comparator.comparing(Batsmans::getAvg).reversed()).collect(Collectors.toList());
-        return sortedList;
-    }
-
-    public List<Batsmans> sortingPlayersForStriker() throws IPLException {
-        if (list == null || list.size() == 0){
-            throw new IPLException("NO_CENSUS_DATA", IPLException.ExceptionType.NO_DATA_AVAIL);
-        }
-        List sortedList = list.stream().sorted(Comparator.comparing(Batsmans::getStrikeRate).reversed()).collect(Collectors.toList());
-        return sortedList;
-    }
-
-    public List<Batsmans> sortingPlayersSixsAndFour() throws IPLException {
-        if (list == null || list.size() == 0){
-            throw new IPLException("NO_CENSUS_DATA", IPLException.ExceptionType.NO_DATA_AVAIL);
-        }
-        List sortedList = list.stream().collect(Collectors.toList());
-        Comparator<Batsmans> codeCsvComparator = (player1, player2) -> new Integer((player1.fours*4 + player1.sixer*6) > (player2.fours*4 + player2.sixer*6) ? -1 : 1);
-        Collections.sort(sortedList,codeCsvComparator);
-        return sortedList;
-    }
-
-    public List<Batsmans> sortingPlayersByStrikeRates() throws IPLException {
-        if (list == null || list.size() == 0){
-            throw new IPLException("NO_CENSUS_DATA", IPLException.ExceptionType.NO_DATA_AVAIL);
-        }
-        List sortedList = list.stream().collect(Collectors.toList());
-        Comparator<Batsmans> codeCsvComparator = (player1, player2) -> new Integer((player1.fours*4 + player1.sixer*6) > (player2.fours*4 + player2.sixer*6) ? -1 : 1);
-        codeCsvComparator = codeCsvComparator.thenComparing(Batsmans::getStrikeRate);
-        Collections.sort(sortedList,codeCsvComparator);
-        return sortedList;
+    public ArrayList getSortedFields(Sorting.sortingFields sortfields) {
+        Comparator<Batsmans> comparator = new Sorting().getField(sortfields);
+        ArrayList arrayList = (ArrayList) list.stream().sorted(comparator)
+                .collect(Collectors.toList());
+        return arrayList;
     }
 }
 

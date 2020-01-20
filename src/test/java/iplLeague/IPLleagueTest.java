@@ -22,7 +22,7 @@ public class IPLleagueTest {
     public void givenMostRunFile_ShouldReturnTopRunAverage() throws IPLException, IOException, CSVBuilderException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis();
         ipLleagueAnalysis.loadIplRunCensusData(MOSTRUNSFILE);
-        List<Batsmans> sortedCensusData = ipLleagueAnalysis.sortingPlayersDataInReverse();
+        List<Batsmans> sortedCensusData = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.AVG_BATTING);
         Assert.assertEquals(83.2,sortedCensusData.get(0).avg,0);
     }
 
@@ -38,7 +38,7 @@ public class IPLleagueTest {
     public void givenMostRunFile_ShouldReturnTopStriker() throws IPLException, IOException, CSVBuilderException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis();
         ipLleagueAnalysis.loadIplRunCensusData(MOSTRUNSFILE);
-        List<Batsmans> sortedCensusData = ipLleagueAnalysis.sortingPlayersForStriker();
+        List<Batsmans> sortedCensusData = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.STRIKING_RATE);
         Assert.assertEquals(333.33,sortedCensusData.get(0).strikeRate,0);
     }
 
@@ -46,7 +46,7 @@ public class IPLleagueTest {
     public void givenMostRunFile_ShouldReturnPlayerWithHighestSixAndFour() throws IPLException, IOException, CSVBuilderException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis();
         ipLleagueAnalysis.loadIplRunCensusData(MOSTRUNSFILE);
-        List<Batsmans> sortedCensusData = ipLleagueAnalysis.sortingPlayersSixsAndFour();
+        List<Batsmans> sortedCensusData = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.SIXES_FOURS);
         System.out.println(sortedCensusData);
         Assert.assertEquals("Andre Russell",sortedCensusData.get(0).player);
     }
@@ -55,7 +55,7 @@ public class IPLleagueTest {
     public void givenMostRunFile_ShoulReturn() throws IPLException, IOException, CSVBuilderException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis();
         ipLleagueAnalysis.loadIplRunCensusData(MOSTRUNSFILE);
-        List<Batsmans> sortedCensusData = ipLleagueAnalysis.sortingPlayersByStrikeRates();
+        List<Batsmans> sortedCensusData = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.SIXES_FOUR_STRIKES);
         System.out.println(sortedCensusData);
         Assert.assertEquals("Andre Russell",sortedCensusData.get(0).player);
     }
