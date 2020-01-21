@@ -11,6 +11,7 @@ public class IPLleagueTest {
     private  String MOSTRUNSFILE = "/home/admin1/CricketLeagueProblem/src/test/resources/IPLMOSTRUNDATACSV.csv";
     private String WRONG_RUN_PATH = "./src/main/resources/IndiaStateCensusData.csv";
     private String WICKET_FILE_CSV = "/home/admin1/CricketLeagueProblem/src/test/resources/IPLMOSTWKTDATA.csv";
+    private String WKT_WRONG_FILE = "./src/main/resources/IndiaStateCensusData.csv";
 
     @Test
     public void givenMostRunFile_ShouldReturnCorrectData() throws IOException, IPLException, CSVBuilderException {
@@ -84,5 +85,26 @@ public class IPLleagueTest {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis();
         int totalRecords = ipLleagueAnalysis.loadingBowlersData(WICKET_FILE_CSV);
         Assert.assertEquals(99,totalRecords);
+    }
+
+
+    @Test
+    public void givenIncorrectWktRunsFile_ShouldThroughException() throws IPLException, IOException, CSVBuilderException {
+        try {
+
+            IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis();
+            int numOfplayers = ipLleagueAnalysis.loadingBowlersData(WKT_WRONG_FILE);
+            Assert.assertEquals(99,numOfplayers);
+        }
+        catch (IPLException e)
+        { }
+    }
+
+    @Test
+    public void givenWktFile_ShouldReturnBowlerAvg() throws IPLException, IOException, CSVBuilderException {
+        IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis();
+        ipLleagueAnalysis.loadingBowlersData(WICKET_FILE_CSV);
+        List<Bowlers> data = ipLleagueAnalysis.getBowlingSortedData(Sorting.sortingFields.AVG_WKT);
+        Assert.assertEquals(166,data.get(0).avg,0);
     }
 }

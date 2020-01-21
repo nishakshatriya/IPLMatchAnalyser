@@ -28,6 +28,12 @@ public class IPLleagueAnalysis {
                 .collect(Collectors.toList());
         return arrayList;
     }
+    public ArrayList getBowlingSortedData(Sorting.sortingFields sortingFields) {
+        Comparator<Bowlers> comparator = new Sorting().getBowlingFields(sortingFields);
+        ArrayList arrayList = (ArrayList) bowlerList.stream().sorted(comparator)
+                .collect(Collectors.toList());
+        return arrayList;
+    }
 }
 
 
