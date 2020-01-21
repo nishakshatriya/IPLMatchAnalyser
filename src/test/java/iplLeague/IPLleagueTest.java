@@ -104,7 +104,7 @@ public class IPLleagueTest {
     public void givenWktFile_ShouldReturnBowlerAvg() throws IPLException, IOException, CSVBuilderException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis();
         ipLleagueAnalysis.loadingBowlersData(WICKET_FILE_CSV);
-        List<IPLLeagueDAO> data = ipLleagueAnalysis.getBowlingSortedData(Sorting.sortingFields.AVG_WKT);
+        List<IPLLeagueDAO> data = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.AVG_WKT);
         Assert.assertEquals(166,data.get(0).avg,0);
     }
 
@@ -112,7 +112,7 @@ public class IPLleagueTest {
     public void givenWktFile_ShouldReturnHighestBowlerStrikeRate() throws IPLException, IOException, CSVBuilderException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis();
         ipLleagueAnalysis.loadingBowlersData(WICKET_FILE_CSV);
-        List<IPLLeagueDAO> data = ipLleagueAnalysis.getBowlingSortedData(Sorting.sortingFields.STRIKING_RATE);
+        List<IPLLeagueDAO> data = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.STRIKING_RATE);
         Assert.assertEquals(120.0,data.get(0).strikeRate,0);
 
     }
@@ -121,8 +121,17 @@ public class IPLleagueTest {
     public void givenWktFile_ShouldReturnBestEconomyBowler() throws IPLException, IOException, CSVBuilderException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis();
         ipLleagueAnalysis.loadingBowlersData(WICKET_FILE_CSV);
-        List<IPLLeagueDAO> data = ipLleagueAnalysis.getBowlingSortedData(Sorting.sortingFields.BEST_ECO);
+        List<IPLLeagueDAO> data = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.BEST_ECO);
         Assert.assertEquals(13.5,data.get(0).Economy,0);
+    }
+
+    @Test
+    public void givenWktFile_ShouldReturnLeastEconomyBowler() throws IPLException, IOException, CSVBuilderException {
+        IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis();
+        ipLleagueAnalysis.loadingBowlersData(WICKET_FILE_CSV);
+        List<IPLLeagueDAO> data = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.BEST_ECO);
+        Assert.assertEquals(4.8,data.get(98).Economy,0);
+
     }
 }
 
