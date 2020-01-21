@@ -8,8 +8,7 @@ public class Sorting {
     public enum sortingFields{
         AVG_BATTING, STRIKING_RATE, SIXES_FOURS, SIXES_FOUR_STRIKES, GREATAVG_BESTSTRIKE, MAX_RUN_BEST_AVG, BEST_RUN, AVG_WKT
     }
-    static Map<sortingFields, Comparator<Batsmans>> comparatorMap = new HashMap<>();
-    static Map<sortingFields, Comparator<Bowlers>> map = new HashMap<>();
+    static Map<sortingFields, Comparator<IPLLeagueDAO>> comparatorMap = new HashMap<>();
 
     public Comparator getField(Sorting.sortingFields sortField)
     {
@@ -20,14 +19,8 @@ public class Sorting {
         comparatorMap.put(sortingFields.SIXES_FOUR_STRIKES, comparatorMap.get(sortingFields.SIXES_FOURS).thenComparing(comparatorMap.get(sortingFields.STRIKING_RATE)));
         comparatorMap.put(sortingFields.GREATAVG_BESTSTRIKE, comparatorMap.get(sortingFields.AVG_BATTING).thenComparing((Player1,Player2) -> Player1.strikeRate - Player2.strikeRate > 0 ? -1 :1));
         comparatorMap.put(sortingFields.MAX_RUN_BEST_AVG, comparatorMap.get(sortingFields.BEST_RUN).thenComparing((Player1, Player2) -> (Player1.avg-Player2.avg) > 0 ? -1 : 1));
+        comparatorMap.put(sortingFields.AVG_WKT,(Player1, Player2) -> (int) (Player2.avg-Player1.avg));
         Comparator comparator=comparatorMap.get(sortField);
-        return comparator;
-    }
-
-    public Comparator getBowlingFields(Sorting.sortingFields sortField)
-    {
-        map.put(sortingFields.AVG_WKT,(Player1, Player2) -> (int) (Player2.avg-Player1.avg));
-        Comparator comparator = map.get(sortField);
         return comparator;
     }
 }

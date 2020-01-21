@@ -43,7 +43,7 @@ public class Bowlers {
     public int four_wkts;
 
     @CsvBindByName(column = "5w", required = true)
-    public String five_wkts;
+    public int five_wkts;
 
     @Override
     public String toString() {

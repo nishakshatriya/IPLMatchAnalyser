@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 
 
 public class IPLleagueAnalysis {
-    List<Batsmans> list = new ArrayList<>();
-    List<Bowlers> bowlerList = new ArrayList<>();
+    List<IPLLeagueDAO> list = new ArrayList<>();
+    List<IPLLeagueDAO> bowlerList = new ArrayList<>();
     HashMap <Sorting.sortingFields, Comparator> ComparatorMap = new HashMap<>();
 
     public int loadingData(String csvFilePath) throws IPLException, IOException, CSVBuilderException {
@@ -23,13 +23,13 @@ public class IPLleagueAnalysis {
     }
 
     public ArrayList getSortedFields(Sorting.sortingFields sortfields) {
-        Comparator<Batsmans> comparator = new Sorting().getField(sortfields);
+        Comparator<IPLLeagueDAO> comparator = new Sorting().getField(sortfields);
         ArrayList arrayList = (ArrayList) list.stream().sorted(comparator)
                 .collect(Collectors.toList());
         return arrayList;
     }
     public ArrayList getBowlingSortedData(Sorting.sortingFields sortingFields) {
-        Comparator<Bowlers> comparator = new Sorting().getBowlingFields(sortingFields);
+        Comparator<IPLLeagueDAO> comparator = new Sorting().getField(sortingFields);
         ArrayList arrayList = (ArrayList) bowlerList.stream().sorted(comparator)
                 .collect(Collectors.toList());
         return arrayList;

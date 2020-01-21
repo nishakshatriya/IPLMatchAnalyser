@@ -24,7 +24,7 @@ public class IPLleagueTest {
     public void givenMostRunFile_ShouldReturnTopRunAverage() throws IPLException, IOException, CSVBuilderException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis();
         ipLleagueAnalysis.loadingData(MOSTRUNSFILE);
-        List<Batsmans> sortedCensusData = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.AVG_BATTING);
+        List<IPLLeagueDAO> sortedCensusData = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.AVG_BATTING);
         Assert.assertEquals(83.2,sortedCensusData.get(0).avg,0);
     }
 
@@ -44,7 +44,7 @@ public class IPLleagueTest {
     public void givenMostRunFile_ShouldReturnTopStriker() throws IPLException, IOException, CSVBuilderException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis();
         ipLleagueAnalysis.loadingData(MOSTRUNSFILE);
-        List<Batsmans> sortedCensusData = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.STRIKING_RATE);
+        List<IPLLeagueDAO> sortedCensusData = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.STRIKING_RATE);
         Assert.assertEquals(333.33,sortedCensusData.get(0).strikeRate,0);
     }
 
@@ -52,7 +52,7 @@ public class IPLleagueTest {
     public void givenMostRunFile_ShouldReturnPlayerWithHighestSixAndFour() throws IPLException, IOException, CSVBuilderException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis();
         ipLleagueAnalysis.loadingData(MOSTRUNSFILE);
-        List<Batsmans> sortedCensusData = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.SIXES_FOURS);
+        List<IPLLeagueDAO> sortedCensusData = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.SIXES_FOURS);
         Assert.assertEquals("Andre Russell",sortedCensusData.get(0).player);
     }
 
@@ -60,7 +60,7 @@ public class IPLleagueTest {
     public void givenMostRunFile_ShoulReturnPlayerWithHighest4and6AndHighestStrikes() throws IPLException, IOException, CSVBuilderException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis();
         ipLleagueAnalysis.loadingData(MOSTRUNSFILE);
-        List<Batsmans> sortedCensusData = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.SIXES_FOUR_STRIKES);
+        List<IPLLeagueDAO> sortedCensusData = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.SIXES_FOUR_STRIKES);
         Assert.assertEquals("Andre Russell",sortedCensusData.get(0).player);
     }
 
@@ -68,7 +68,7 @@ public class IPLleagueTest {
     public void givenMostRunFile_ShouldReturnGreatAvgAndHighStikePlayer() throws IPLException, IOException, CSVBuilderException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis();
         ipLleagueAnalysis.loadingData(MOSTRUNSFILE);
-        List<Batsmans> sortedcensusData = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.GREATAVG_BESTSTRIKE);
+        List<IPLLeagueDAO> sortedcensusData = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.GREATAVG_BESTSTRIKE);
         Assert.assertEquals("MS Dhoni",sortedcensusData.get(0).player);
     }
 
@@ -76,7 +76,7 @@ public class IPLleagueTest {
     public void givenMostRunFile_ShouldReturnMaxRunAndBestAvg() throws IPLException, IOException, CSVBuilderException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis();
         ipLleagueAnalysis.loadingData(MOSTRUNSFILE);
-        List<Batsmans> sortedcensusData = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.MAX_RUN_BEST_AVG);
+        List<IPLLeagueDAO> sortedcensusData = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.MAX_RUN_BEST_AVG);
         Assert.assertEquals("David Warner",sortedcensusData.get(0).player);
     }
 
@@ -104,7 +104,7 @@ public class IPLleagueTest {
     public void givenWktFile_ShouldReturnBowlerAvg() throws IPLException, IOException, CSVBuilderException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis();
         ipLleagueAnalysis.loadingBowlersData(WICKET_FILE_CSV);
-        List<Bowlers> data = ipLleagueAnalysis.getBowlingSortedData(Sorting.sortingFields.AVG_WKT);
+        List<IPLLeagueDAO> data = ipLleagueAnalysis.getBowlingSortedData(Sorting.sortingFields.AVG_WKT);
         Assert.assertEquals(166,data.get(0).avg,0);
     }
 }

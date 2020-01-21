@@ -12,17 +12,20 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 public class DataLoader {
 
-    public static List<Batsmans> loadIplRunCensusData(String csvFilePath) throws IPLException, IOException, CSVBuilderException {
-        List<Batsmans> list = new ArrayList<>();
+    public static List<IPLLeagueDAO> loadIplRunCensusData(String csvFilePath) throws IPLException, IOException, CSVBuilderException {
+        List<IPLLeagueDAO> list = new ArrayList<>();
 
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
             ICSVBuilder icsvBuilder = CSVBuilderFactory.CreateCSVBuilder();
             List playersList = icsvBuilder.getCSVInList(reader, Batsmans.class);
-            playersList.stream().filter(CensusData -> list.add((Batsmans) CensusData)).collect(Collectors.toList());
-            return playersList;
+            StreamSupport.stream(playersList.spliterator(), false)
+                    .map(Batsmans.class::cast)
+                    .forEach(cricketCSV -> list.add(new IPLLeagueDAO((Batsmans) cricketCSV)));
+            return list;
         }catch (NoSuchFileException e){
             throw new IPLException(e.getMessage(),
                     IPLException.ExceptionType.FILE_ERROR);
@@ -35,14 +38,17 @@ public class DataLoader {
         return null;
     }
 
-    public static List<Bowlers> loadIplBowlCensusData(String csvFilePath) throws IPLException, IOException, CSVBuilderException {
-        List<Bowlers> bowlersList = new ArrayList<>();
+    public static List<IPLLeagueDAO> loadIplBowlCensusData(String csvFilePath) throws IPLException, IOException, CSVBuilderException {
+        List<IPLLeagueDAO> bowlersList = new ArrayList<>();
 
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
             ICSVBuilder icsvBuilder = CSVBuilderFactory.CreateCSVBuilder();
             List playersList = icsvBuilder.getCSVInList(reader, Bowlers.class);
-            playersList.stream().filter(CensusData -> bowlersList.add((Bowlers) CensusData)).collect(Collectors.toList());
-            return playersList;
+            //playersList.stream().filter(CensusData -> bowlersList.add((IPLLeagueDAO) CensusData)).collect(Collectors.toList());
+            StreamSupport.stream(playersList.spliterator(), false)
+                    .map(Bowlers.class::cast)
+                    .forEach(cricketCSV -> bowlersList.add(new IPLLeagueDAO((Bowlers) cricketCSV)));
+            return bowlersList;
         }catch (NoSuchFileException e){
             throw new IPLException(e.getMessage(),
                     IPLException.ExceptionType.FILE_ERROR);
