@@ -35,12 +35,24 @@ public class DataLoader {
         return null;
     }
 
+    public static List<Bowlers> loadIplBowlCensusData(String csvFilePath) throws IPLException, IOException, CSVBuilderException {
+        List<Bowlers> bowlersList = new ArrayList<>();
 
+        try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
+            ICSVBuilder icsvBuilder = CSVBuilderFactory.CreateCSVBuilder();
+            List playersList = icsvBuilder.getCSVInList(reader, Bowlers.class);
+            playersList.stream().filter(CensusData -> bowlersList.add((Bowlers) CensusData)).collect(Collectors.toList());
+            return playersList;
+        }catch (NoSuchFileException e){
+            throw new IPLException(e.getMessage(),
+                    IPLException.ExceptionType.FILE_ERROR);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        } catch (CSVBuilderException e) {
+            throw new IPLException(e.getMessage(), e.type.name());
+        }
+        return null;
+    }
 }
 
-
-/*
-catch (NoSuchFileException e1) {
-throw new IplAnalyserException(e1.getMessage(),
-IplAnalyserException.ExceptionType.FILE_LOAD_PROBLEM);
- */

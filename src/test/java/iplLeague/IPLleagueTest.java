@@ -10,6 +10,8 @@ import java.util.List;
 public class IPLleagueTest {
     private  String MOSTRUNSFILE = "/home/admin1/CricketLeagueProblem/src/test/resources/IPLMOSTRUNDATACSV.csv";
     private String WRONG_RUN_PATH = "./src/main/resources/IndiaStateCensusData.csv";
+    private String WICKET_FILE_CSV = "/home/admin1/CricketLeagueProblem/src/test/resources/IPLMOSTWKTDATA.csv";
+
     @Test
     public void givenMostRunFile_ShouldReturnCorrectData() throws IOException, IPLException, CSVBuilderException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis();
@@ -75,5 +77,12 @@ public class IPLleagueTest {
         ipLleagueAnalysis.loadingData(MOSTRUNSFILE);
         List<Batsmans> sortedcensusData = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.MAX_RUN_BEST_AVG);
         Assert.assertEquals("David Warner",sortedcensusData.get(0).player);
+    }
+
+    @Test
+    public void givenWicketFile_ShouldReturnCorrectData() throws IOException, IPLException, CSVBuilderException {
+        IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis();
+        int totalRecords = ipLleagueAnalysis.loadingBowlersData(WICKET_FILE_CSV);
+        Assert.assertEquals(99,totalRecords);
     }
 }
