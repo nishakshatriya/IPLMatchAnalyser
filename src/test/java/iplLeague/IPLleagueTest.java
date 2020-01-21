@@ -114,5 +114,15 @@ public class IPLleagueTest {
         ipLleagueAnalysis.loadingBowlersData(WICKET_FILE_CSV);
         List<IPLLeagueDAO> data = ipLleagueAnalysis.getBowlingSortedData(Sorting.sortingFields.STRIKING_RATE);
         Assert.assertEquals(120.0,data.get(0).strikeRate,0);
+
+    }
+
+    @Test
+    public void givenWktFile_ShouldReturnBestEconomyBowler() throws IPLException, IOException, CSVBuilderException {
+        IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis();
+        ipLleagueAnalysis.loadingBowlersData(WICKET_FILE_CSV);
+        List<IPLLeagueDAO> data = ipLleagueAnalysis.getBowlingSortedData(Sorting.sortingFields.BEST_ECO);
+        Assert.assertEquals(13.5,data.get(0).Economy,0);
     }
 }
+

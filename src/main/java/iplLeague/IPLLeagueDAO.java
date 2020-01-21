@@ -9,6 +9,7 @@ public class IPLLeagueDAO {
     public int runs;
     public double avg;
     public String player;
+    public double Economy;
 
     public IPLLeagueDAO(Batsmans batsmans) {
         strikeRate = batsmans.strikeRate;
@@ -27,9 +28,22 @@ public class IPLLeagueDAO {
         four_wkts = bowlers.four_wkts;
         five_wkts = bowlers.five_wkts;
         player = bowlers.player;
+        Economy = bowlers.Economy;
 
     }
 
-
-
+    @Override
+    public String toString() {
+        return "IPLLeagueDAO{" +
+                "strikeRate=" + strikeRate +
+                ", fours=" + fours +
+                ", four_wkts=" + four_wkts +
+                ", sixer=" + sixer +
+                ", five_wkts=" + five_wkts +
+                ", runs=" + runs +
+                ", avg=" + avg +
+                ", player='" + player + '\'' +
+                ", Economy=" + Economy +
+                '}';
+    }
 }
