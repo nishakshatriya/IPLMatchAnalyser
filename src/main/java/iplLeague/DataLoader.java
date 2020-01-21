@@ -44,7 +44,6 @@ public class DataLoader {
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
             ICSVBuilder icsvBuilder = CSVBuilderFactory.CreateCSVBuilder();
             List playersList = icsvBuilder.getCSVInList(reader, Bowlers.class);
-            //playersList.stream().filter(CensusData -> bowlersList.add((IPLLeagueDAO) CensusData)).collect(Collectors.toList());
             StreamSupport.stream(playersList.spliterator(), false)
                     .map(Bowlers.class::cast)
                     .forEach(cricketCSV -> bowlersList.add(new IPLLeagueDAO((Bowlers) cricketCSV)));

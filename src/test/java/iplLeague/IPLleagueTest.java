@@ -107,4 +107,12 @@ public class IPLleagueTest {
         List<IPLLeagueDAO> data = ipLleagueAnalysis.getBowlingSortedData(Sorting.sortingFields.AVG_WKT);
         Assert.assertEquals(166,data.get(0).avg,0);
     }
+
+    @Test
+    public void givenWktFile_ShouldReturnHighestBowlerStrikeRate() throws IPLException, IOException, CSVBuilderException {
+        IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis();
+        ipLleagueAnalysis.loadingBowlersData(WICKET_FILE_CSV);
+        List<IPLLeagueDAO> data = ipLleagueAnalysis.getBowlingSortedData(Sorting.sortingFields.STRIKING_RATE);
+        Assert.assertEquals(120.0,data.get(0).strikeRate,0);
+    }
 }
