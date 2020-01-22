@@ -8,16 +8,18 @@ import java.util.stream.Collectors;
 
 
 public class IPLleagueAnalysis {
+    private Cricket cricket;
+    public enum Cricket {BATSMANS, BOWLERS}
+
+    public IPLleagueAnalysis(Cricket cricket) {
+        this.cricket = cricket;
+    }
+
     List<IPLLeagueDAO> list = new ArrayList<>();
     HashMap <Sorting.sortingFields, Comparator> ComparatorMap = new HashMap<>();
 
     public int loadingData(String csvFilePath) throws IPLException, IOException, CSVBuilderException {
-        list = DataLoader.loadIPLData(csvFilePath,Batsmans.class);
-        return list.size();
-    }
-
-    public int loadingBowlersData(String csvFilePath) throws IPLException, IOException, CSVBuilderException {
-        list = DataLoader.loadIPLData(csvFilePath,Bowlers.class);
+        list = CricketFactory.loadingData(cricket, csvFilePath);
         return list.size();
     }
 
