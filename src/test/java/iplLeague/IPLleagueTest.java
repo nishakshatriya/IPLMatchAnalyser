@@ -157,5 +157,22 @@ public class IPLleagueTest {
         List<IPLLeagueDAO> data = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.BOWL_AVG_STRIKE_RATE);
         Assert.assertEquals("Krishnappa Gowtham",data.get(0).player);
     }
+
+    @Test
+    public void givenWktFile_ShouldReturnMaxWktAndBestBowlAvg() throws IPLException, IOException, CSVBuilderException {
+        IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis(IPLleagueAnalysis.Cricket.BOWLERS);
+        ipLleagueAnalysis.loadingData(WICKET_FILE_CSV);
+        List<IPLLeagueDAO> data = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.MAX_WKT_BEST_BOWLAVG);
+        Assert.assertEquals("Imran Tahir",data.get(0).player);
+    }
+
+    @Test
+    public void givenWktFile_ShouldReturnMinWKtAndLeastBowlAvg() throws IPLException, IOException, CSVBuilderException {
+        IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis(IPLleagueAnalysis.Cricket.BOWLERS);
+        ipLleagueAnalysis.loadingData(WICKET_FILE_CSV);
+        List<IPLLeagueDAO> data = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.MAX_WKT_BEST_BOWLAVG);
+        Assert.assertEquals("Liam Livingstone",data.get(98).player);
+
+    }
 }
 
