@@ -37,7 +37,7 @@ public class Bowlers {
     public double Economy;
 
     @CsvBindByName(column = "SR", required = true)
-    public double strikeRate;
+    public double sr;
 
     @CsvBindByName(column = "4w", required = true)
     public int four_wkts;
@@ -58,7 +58,7 @@ public class Bowlers {
                 ", best_balling_index=" + best_balling_index +
                 ", avg=" + avg +
                 ", Economy=" + Economy +
-                ", strikeRate=" + strikeRate +
+                ", strikeRate=" + sr +
                 ", four_wkts=" + four_wkts +
                 ", five_wkts='" + five_wkts + '\'' +
                 '}';

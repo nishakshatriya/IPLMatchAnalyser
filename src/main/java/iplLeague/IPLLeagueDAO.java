@@ -10,6 +10,7 @@ public class IPLLeagueDAO {
     public double avg;
     public String player;
     public double Economy;
+    public double bowlStrikeRate;
 
     public IPLLeagueDAO(Batsmans batsmans) {
         strikeRate = batsmans.strikeRate;
@@ -24,7 +25,7 @@ public class IPLLeagueDAO {
     {
         avg = bowlers.avg;
         runs = bowlers.runs;
-        strikeRate = bowlers.strikeRate;
+        bowlStrikeRate = bowlers.sr;
         four_wkts = bowlers.four_wkts;
         five_wkts = bowlers.five_wkts;
         player = bowlers.player;
@@ -44,6 +45,7 @@ public class IPLLeagueDAO {
                 ", avg=" + avg +
                 ", player='" + player + '\'' +
                 ", Economy=" + Economy +
+                ", bowlStrikeRate=" + bowlStrikeRate +
                 '}';
     }
 }
