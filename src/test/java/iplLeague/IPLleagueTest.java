@@ -149,5 +149,13 @@ public class IPLleagueTest {
         List<IPLLeagueDAO> data = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.STRIKE_5W_4W);
         Assert.assertEquals("Kagiso Rabada",data.get(98).player);
     }
+
+    @Test
+    public void givenWktFile_ShouldReturnBestBowlingAverageAndStrikeRate() throws IPLException, IOException, CSVBuilderException {
+        IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis(IPLleagueAnalysis.Cricket.BOWLERS);
+        ipLleagueAnalysis.loadingData(WICKET_FILE_CSV);
+        List<IPLLeagueDAO> data = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.BOWL_AVG_STRIKE_RATE);
+        Assert.assertEquals("Krishnappa Gowtham",data.get(0).player);
+    }
 }
 
