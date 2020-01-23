@@ -170,9 +170,25 @@ public class IPLleagueTest {
     @Test
     public void givenWktFile_ShouldReturnMinWKtAndLeastBowlAvg() throws IPLException, IOException, CSVBuilderException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis(IPLleagueAnalysis.Cricket.BOWLERS);
-        ipLleagueAnalysis.loadingData(WICKET_FILE_CSV);
+        ipLleagueAnalysis.loadingData(WICKET_FILE_CSV,MOSTRUNSFILE);
         List<IPLLeagueDAO> data = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.MAX_WKT_BEST_BOWLAVG);
         Assert.assertEquals("Yusuf Pathan",data.get(98).player);
+    }
+
+    @Test
+    public void givenBowlBatFile_ShouldReturnBestBatAndBowlPlayer() throws IPLException, IOException, CSVBuilderException {
+        IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis(IPLleagueAnalysis.Cricket.BatsmanBowlersCombo);
+        ipLleagueAnalysis.loadingData(MOSTRUNSFILE,WICKET_FILE_CSV);
+        List<IPLLeagueDAO> data = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.BESTBOWL_BAT_AVG);
+       Assert.assertEquals("MS Dhoni",data.get(0).player);
+    }
+
+    @Test
+    public void givenBowlBatFile_ShouldReturnLeastBatAndBowlAvgPlayer() throws IPLException, IOException, CSVBuilderException {
+        IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis(IPLleagueAnalysis.Cricket.BatsmanBowlersCombo);
+        ipLleagueAnalysis.loadingData(MOSTRUNSFILE,WICKET_FILE_CSV);
+        List<IPLLeagueDAO> data = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.BESTBOWL_BAT_AVG);
+        Assert.assertEquals("Harpreet Brar",data.get(99).player);
     }
 }
 

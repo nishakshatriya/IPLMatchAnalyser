@@ -30,7 +30,7 @@ public class Bowlers {
     public int best_balling_index;
 
     @CsvBindByName(column = "Avg", required = true)
-    public double avg;
+    public double bowl_avg;
 
     @CsvBindByName(column = "Econ", required = true)
     public double Economy;
@@ -55,11 +55,11 @@ public class Bowlers {
                 ", runs=" + runs +
                 ", wickets=" + wickets +
                 ", best_balling_index=" + best_balling_index +
-                ", avg=" + avg +
+                ", bowl_avg=" + bowl_avg +
                 ", Economy=" + Economy +
-                ", strikeRate=" + sr +
+                ", sr=" + sr +
                 ", four_wkts=" + four_wkts +
-                ", five_wkts='" + five_wkts + '\'' +
+                ", five_wkts=" + five_wkts +
                 '}';
     }
 }

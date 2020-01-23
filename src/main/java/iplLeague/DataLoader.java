@@ -13,22 +13,22 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.StreamSupport;
 
-public abstract class DataLoader  {
+public class DataLoader {
 
-    public <E> Map loadIPLData(Class<E> CSVClass, String csvFilePath) throws IPLException, IOException {
-        Map<String,IPLLeagueDAO> list = new TreeMap<>();
+    public <E> Map<String, IPLLeagueDAO> loadIPLData(Class<E> CSVClass, String... csvFilePath) throws IPLException, IOException {
+        Map<String, IPLLeagueDAO> list = new TreeMap<>();
 
-        try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
+        try (Reader reader = Files.newBufferedReader(Paths.get(String.valueOf(csvFilePath[0])))) {
             ICSVBuilder icsvBuilder = CSVBuilderFactory.CreateCSVBuilder();
             List<E> playersList = icsvBuilder.getCSVInList(reader, CSVClass);
             if (CSVClass.getName().equals("iplLeague.Batsmans")) {
                 StreamSupport.stream(playersList.spliterator(), false)
                         .map(Batsmans.class::cast)
-                        .forEach(cricketCSV -> list.put(cricketCSV.player, new  IPLLeagueDAO((cricketCSV))));
-            } else {
+                        .forEach(cricketCSV -> list.put(cricketCSV.player, new IPLLeagueDAO((cricketCSV))));
+            } else if (CSVClass.getName().equals("iplLeague.Bowlers")) {
                 StreamSupport.stream(playersList.spliterator(), false)
                         .map(Bowlers.class::cast)
-                        .forEach(cricketCSV -> list.put(cricketCSV.player ,new IPLLeagueDAO(cricketCSV)));
+                        .forEach(cricketCSV -> list.put(cricketCSV.player, new IPLLeagueDAO(cricketCSV)));
             }
         } catch (IOException e) {
             throw new IPLException(e.getMessage(), IPLException.ExceptionType.NO_DATA_AVAIL);
@@ -39,9 +39,7 @@ public abstract class DataLoader  {
         }
         return list;
     }
-
-    public abstract  <E> Map< String,IPLLeagueDAO> loadIPLData(String... csvFilePath) throws IPLException, IOException;
-    }
+}
 
 
 

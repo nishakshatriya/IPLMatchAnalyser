@@ -8,7 +8,8 @@ import java.util.stream.Collectors;
 
 public class IPLleagueAnalysis {
     private Cricket cricket;
-    public enum Cricket {BATSMANS, BOWLERS}
+    public enum Cricket {BATSMANS, BOWLERS, BatsmanBowlersCombo}
+
 
     public IPLleagueAnalysis(Cricket cricket) {
         this.cricket = cricket;
@@ -17,7 +18,7 @@ public class IPLleagueAnalysis {
     Map<String,IPLLeagueDAO> list = new TreeMap<>();
     HashMap <Sorting.sortingFields, Comparator> ComparatorMap = new HashMap<>();
 
-    public int loadingData(String csvFilePath) throws IPLException, IOException, CSVBuilderException {
+    public int loadingData(String... csvFilePath) throws IPLException, IOException, CSVBuilderException {
         list = CricketFactory.loadingData(cricket, csvFilePath);
         return list.size();
     }

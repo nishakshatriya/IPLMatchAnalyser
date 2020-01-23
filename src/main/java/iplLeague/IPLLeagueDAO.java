@@ -8,6 +8,7 @@ public class IPLLeagueDAO {
     public int five_wkts;
     public int runs;
     public double avg;
+    public double bowl_avg;
     public String player;
     public double Economy;
     public double bowlStrikeRate;
@@ -24,7 +25,7 @@ public class IPLLeagueDAO {
 
     public IPLLeagueDAO(Bowlers bowlers)
     {
-        avg = bowlers.avg;
+        bowl_avg = bowlers.bowl_avg;
         runs = bowlers.runs;
         bowlStrikeRate = bowlers.sr;
         four_wkts = bowlers.four_wkts;
