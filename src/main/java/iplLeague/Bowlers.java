@@ -2,7 +2,6 @@ package iplLeague;
 
 import com.opencsv.bean.CsvBindByName;
 
-//POS,PLAYER,Mat,Inns,Ov,Runs,Wkts,BBI,Avg,Econ,SR,4w,5w,
 public class Bowlers {
 
     @CsvBindByName(column = "POS", required = true)

@@ -1,7 +1,6 @@
 package iplLeague;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
 public class BowlersAdapter extends DataLoader {

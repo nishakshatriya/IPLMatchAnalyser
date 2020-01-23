@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class Sorting {
     public enum sortingFields{
-        AVG_BATTING, STRIKING_RATE, SIXES_FOURS, SIXES_FOUR_STRIKES, GREATAVG_BESTSTRIKE, MAX_RUN_BEST_AVG, BEST_RUN, AVG_WKT, BEST_ECO,STRIKE_5W_4W, wkt5_wkt4, BOWL_AVG_STRIKE_RATE, Bowl_SR , MAX_WKT_BEST_BOWLAVG, BOWL_AVG, MAX_WKT
+        AVG_BATTING, STRIKING_RATE, SIXES_FOURS, SIXES_FOUR_STRIKES, GREATAVG_BESTSTRIKE, MAX_RUN_BEST_AVG, BEST_RUN, AVG_WKT, BEST_ECO,STRIKE_5W_4W, wkt5_wkt4, BOWL_AVG_STRIKE_RATE, Bowl_SR , MAX_WKT_BEST_BOWLAVG, BOWL_AVG, MAX_WKT,BESTBOWL_BAT_AVG
     }
     static Map<sortingFields, Comparator<IPLLeagueDAO>> comparatorMap = new HashMap<>();
 
@@ -28,6 +28,7 @@ public class Sorting {
         comparatorMap.put(sortingFields.BOWL_AVG_STRIKE_RATE,comparatorMap.get(sortingFields.BOWL_AVG).thenComparing(comparatorMap.get(sortingFields.Bowl_SR)));
         comparatorMap.put(sortingFields.MAX_WKT,(Player1,Player2) -> (Player2.wickets - Player1.wickets));
         comparatorMap.put(sortingFields.MAX_WKT_BEST_BOWLAVG,comparatorMap.get(sortingFields.MAX_WKT).thenComparing(comparatorMap.get(sortingFields.BOWL_AVG)));
+        comparatorMap.put(sortingFields.BESTBOWL_BAT_AVG,comparatorMap.get(sortingFields.AVG_BATTING).thenComparing(comparatorMap.get(sortingFields.BOWL_AVG)));
         Comparator comparator=comparatorMap.get(sortField);
         return comparator;
     }

@@ -1,5 +1,4 @@
 package iplLeague;
-//POS,PLAYER,Mat,Inns,NO,Runs,HS,Avg,BF,SR,100,50,4s,6s
 import com.opencsv.bean.CsvBindByName;
 
 public class Batsmans {
