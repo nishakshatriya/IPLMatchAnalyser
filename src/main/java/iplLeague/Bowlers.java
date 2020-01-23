@@ -44,6 +44,20 @@ public class Bowlers {
     @CsvBindByName(column = "5w", required = true)
     public int five_wkts;
 
+    public Bowlers() {
+    }
+
+    public Bowlers(String player, int runs, int wickets, double bowl_avg, double economy, double sr, int four_wkts, int five_wkts) {
+        this.player = player;
+        this.runs = runs;
+        this.wickets = wickets;
+        this.bowl_avg = bowl_avg;
+        this.Economy = economy;
+        this.sr = sr;
+        this.four_wkts = four_wkts;
+        this.five_wkts = five_wkts;
+    }
+
     @Override
     public String toString() {
         return "Bowlers{" +

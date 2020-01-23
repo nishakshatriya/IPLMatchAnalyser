@@ -16,5 +16,4 @@ public class CricketFactory {
             throw new IPLException("INCORRECT_DATA", IPLException.ExceptionType.NO_DATA_AVAIL);
         }
     }
-
 }

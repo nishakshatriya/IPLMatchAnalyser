@@ -23,9 +23,10 @@ public class IPLleagueAnalysis {
         return list.size();
     }
 
-    public List getSortedFields(Sorting.sortingFields sortfields) {
+    public ArrayList getSortedFields(Sorting.sortingFields sortfields) {
         Comparator<IPLLeagueDAO> comparator = new Sorting().getField(sortfields);
-        List iplList = list.values().stream().sorted(comparator)
+        ArrayList iplList = (ArrayList) list.values().stream().sorted(comparator)
+                .map(cricketDAO -> cricketDAO.getCricketDTO(cricket))
                 .collect(Collectors.toList());
         return iplList;
     }

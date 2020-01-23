@@ -45,6 +45,17 @@ public class Batsmans {
     @CsvBindByName(column = "6s", required = true)
     public int sixer;
 
+    public Batsmans() {
+    }
+
+    public Batsmans(String player, int runs, double avg, double strikeRate, int fours, int sixer) {
+        this.player = player;
+        this.runs = runs;
+        this.avg = avg;
+        this.strikeRate = strikeRate;
+        this.fours = fours;
+        this.sixer = sixer;
+    }
 
     public double getAvg() {
         return avg;

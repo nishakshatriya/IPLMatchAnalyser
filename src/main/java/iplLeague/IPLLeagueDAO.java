@@ -53,4 +53,11 @@ public class IPLLeagueDAO {
                 '}';
     }
 
+    public Object getCricketDTO(IPLleagueAnalysis.Cricket cricket){
+        if(cricket.equals(IPLleagueAnalysis.Cricket.BATSMANS)) {
+            return new Batsmans(  player,   runs,    avg,  strikeRate,   fours, sixer);
+        }
+        return new Bowlers(player,runs,wickets,bowl_avg,Economy,bowlStrikeRate,four_wkts,five_wkts);
+    }
+
 }
