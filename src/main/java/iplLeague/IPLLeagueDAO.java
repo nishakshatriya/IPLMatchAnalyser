@@ -51,4 +51,5 @@ public class IPLLeagueDAO {
                 ", wickets=" + wickets +
                 '}';
     }
+
 }

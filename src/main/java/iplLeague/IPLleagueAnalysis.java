@@ -15,7 +15,7 @@ public class IPLleagueAnalysis {
         this.cricket = cricket;
     }
 
-    List<IPLLeagueDAO> list = new ArrayList<>();
+    Map<String,IPLLeagueDAO> list = new TreeMap<>();
     HashMap <Sorting.sortingFields, Comparator> ComparatorMap = new HashMap<>();
 
     public int loadingData(String csvFilePath) throws IPLException, IOException, CSVBuilderException {
@@ -23,11 +23,11 @@ public class IPLleagueAnalysis {
         return list.size();
     }
 
-    public ArrayList getSortedFields(Sorting.sortingFields sortfields) {
+    public List getSortedFields(Sorting.sortingFields sortfields) {
         Comparator<IPLLeagueDAO> comparator = new Sorting().getField(sortfields);
-        ArrayList arrayList = (ArrayList) list.stream().sorted(comparator)
+        List iplList = list.values().stream().sorted(comparator)
                 .collect(Collectors.toList());
-        return arrayList;
+        return iplList;
     }
 }
 

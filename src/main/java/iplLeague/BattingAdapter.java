@@ -2,12 +2,13 @@ package iplLeague;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public class BattingAdapter extends DataLoader{
 
     @Override
-    public <E> List<IPLLeagueDAO> loadIPLData(String... csvFilePath) throws IPLException, IOException {
-        List<IPLLeagueDAO> censusDAOMap = super.loadIPLData(Batsmans.class, csvFilePath[0]);
+    public <E> Map<String,IPLLeagueDAO> loadIPLData(String... csvFilePath) throws IPLException, IOException {
+        Map<String,IPLLeagueDAO> censusDAOMap = super.loadIPLData(Batsmans.class, csvFilePath[0]);
         return censusDAOMap;
 
     }

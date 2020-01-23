@@ -2,10 +2,11 @@ package iplLeague;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public class CricketFactory {
 
-    public static <E> List<IPLLeagueDAO> loadingData(IPLleagueAnalysis.Cricket cricket, String... csvFilePath) throws IPLException, IOException, IOException {
+    public static <E> Map<String,IPLLeagueDAO> loadingData(IPLleagueAnalysis.Cricket cricket, String... csvFilePath) throws IPLException, IOException, IOException {
         if (cricket.equals(IPLleagueAnalysis.Cricket.BATSMANS)) {
             return new BattingAdapter().loadIPLData(csvFilePath);
         } else if (cricket.equals(IPLleagueAnalysis.Cricket.BOWLERS)) {

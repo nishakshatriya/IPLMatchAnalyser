@@ -10,12 +10,14 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.StreamSupport;
 
-public class DataLoader  {
+public abstract class DataLoader  {
 
-    public <E> List loadIPLData(Class<E> CSVClass, String csvFilePath) throws IPLException, IOException {
-        List<IPLLeagueDAO> list = new ArrayList<>();
+    public <E> Map loadIPLData(Class<E> CSVClass, String csvFilePath) throws IPLException, IOException {
+        Map<String,IPLLeagueDAO> list = new TreeMap<>();
 
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
             ICSVBuilder icsvBuilder = CSVBuilderFactory.CreateCSVBuilder();
@@ -23,11 +25,11 @@ public class DataLoader  {
             if (CSVClass.getName().equals("iplLeague.Batsmans")) {
                 StreamSupport.stream(playersList.spliterator(), false)
                         .map(Batsmans.class::cast)
-                        .forEach(cricketCSV -> list.add(new IPLLeagueDAO((cricketCSV))));
+                        .forEach(cricketCSV -> list.put(cricketCSV.player, new  IPLLeagueDAO((cricketCSV))));
             } else {
                 StreamSupport.stream(playersList.spliterator(), false)
                         .map(Bowlers.class::cast)
-                        .forEach(cricketCSV -> list.add(new IPLLeagueDAO(cricketCSV)));
+                        .forEach(cricketCSV -> list.put(cricketCSV.player ,new IPLLeagueDAO(cricketCSV)));
             }
         } catch (IOException e) {
             throw new IPLException(e.getMessage(), IPLException.ExceptionType.NO_DATA_AVAIL);
@@ -39,9 +41,8 @@ public class DataLoader  {
         return list;
     }
 
-    public <E> List<IPLLeagueDAO> loadIPLData(String... csvFilePath) throws IPLException, IOException {
-        return null;
+    public abstract  <E> Map< String,IPLLeagueDAO> loadIPLData(String... csvFilePath) throws IPLException, IOException;
     }
 
-}
+
 
