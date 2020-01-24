@@ -191,5 +191,17 @@ public class IPLleagueTest {
         List<Bowlers> data = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.BESTBOWL_BAT_AVG);
         Assert.assertEquals("Harpreet Brar",data.get(99).player);
     }
+
+    @Test
+    public void whenGivenTopOfBothRunsAndWickets_shouldReturnAllRounderCricketer() throws IPLException, IOException, CSVBuilderException {
+        IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis(IPLleagueAnalysis.Cricket.BatsmanBowlersCombo);
+        ipLleagueAnalysis.loadingData(MOSTRUNSFILE,WICKET_FILE_CSV);
+        List<Bowlers> data = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.ALLROUNDER);
+        for(int i=0;i< data.size(); i++){
+            System.out.println(" "+data.get(i).player+ " "+ data.get(i).runs);
+        }
+        Assert.assertEquals("Andre Russell",data.get(99).player);
+        Assert.assertEquals("AB de Villiers",data.get(0).player);
+    }
 }
 

@@ -11,7 +11,13 @@ public class BatsBowlMergeAdapter extends DataLoader{
                 .filter(iplRun -> iplLeagueBatsMap.get(iplRun.player)!= null)
                 .forEach(iplRun -> iplLeagueBatsMap.get(iplRun.player).bowl_avg=iplRun.bowl_avg);
 
+
+        iplLeagueBowlMap.values().stream()
+                .filter(iplRun -> iplLeagueBatsMap.get(iplRun.player)!=null)
+                .forEach(iplRun -> iplLeagueBatsMap.get(iplRun.player).wickets = iplRun.wickets);
+
         return iplLeagueBatsMap;
+
 
     }
 }
