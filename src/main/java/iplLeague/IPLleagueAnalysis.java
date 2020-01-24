@@ -29,6 +29,7 @@ public class IPLleagueAnalysis {
                 .map(cricketDAO -> cricketDAO.getCricketDTO(cricket))
                 .collect(Collectors.toList());
         return iplList;
+
     }
 }
 

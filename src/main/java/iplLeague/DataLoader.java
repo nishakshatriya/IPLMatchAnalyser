@@ -13,7 +13,8 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.StreamSupport;
 
-public class DataLoader {
+public abstract class DataLoader {
+    public abstract  <E> Map<String, IPLLeagueDAO> loadIPLData(String...csvFilePath) throws IPLException, IOException;
 
     public <E> Map<String, IPLLeagueDAO> loadIPLData(Class<E> CSVClass, String... csvFilePath) throws IPLException, IOException {
         Map<String, IPLLeagueDAO> list = new TreeMap<>();

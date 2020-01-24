@@ -7,9 +7,9 @@ public class CricketFactory {
 
     public static <E> Map<String,IPLLeagueDAO> loadingData(IPLleagueAnalysis.Cricket cricket, String... csvFilePath) throws IPLException, IOException, IOException {
         if (cricket.equals(IPLleagueAnalysis.Cricket.BATSMANS)) {
-            return new BattingAdapter().getData(Batsmans.class,csvFilePath);
+            return new BattingAdapter().loadIPLData(Batsmans.class,csvFilePath);
         } else if (cricket.equals(IPLleagueAnalysis.Cricket.BOWLERS)) {
-            return new BowlersAdapter().getData(Bowlers.class,csvFilePath);
+            return new BowlersAdapter().loadIPLData(Bowlers.class,csvFilePath);
         } else if (cricket.equals(IPLleagueAnalysis.Cricket.BatsmanBowlersCombo)){
             return new BatsBowlMergeAdapter().loadIPLData(csvFilePath);
         } else {
