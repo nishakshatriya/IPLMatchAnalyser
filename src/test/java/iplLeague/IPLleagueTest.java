@@ -200,8 +200,8 @@ public class IPLleagueTest {
         for(int i=0;i< data.size(); i++){
             System.out.println(" "+data.get(i).player+ " "+ data.get(i).runs);
         }
-        Assert.assertEquals("Andre Russell",data.get(99).player);
-        Assert.assertEquals("AB de Villiers",data.get(0).player);
+        Assert.assertEquals("Andre Russell",data.get(0).player);
+        Assert.assertEquals("Yuvraj Singh",data.get(99).player);
     }
 }
 

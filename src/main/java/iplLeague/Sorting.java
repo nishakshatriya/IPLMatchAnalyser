@@ -34,13 +34,14 @@ public class Sorting {
 
         comparatorMap.put(sortingFields.BESTBOWL_BAT_AVG,comparatorMap.get(sortingFields.AVG_BATTING).thenComparing(comparatorMap.get(sortingFields.AVG_WKT)));
 
-        Comparator<IPLLeagueDAO> comparator=Comparator.comparing(CricketAnalyzerDAO -> {
+        Comparator<IPLLeagueDAO> comparators=Comparator.comparing(CricketAnalyzerDAO -> {
             if(CricketAnalyzerDAO.wickets > 7 && CricketAnalyzerDAO.runs > 150)
                 return CricketAnalyzerDAO.runs + (CricketAnalyzerDAO.wickets*20);
             return 0;
         });
 
-        comparatorMap.put(sortingFields.ALLROUNDER,comparator);
+        comparatorMap.put(sortingFields.ALLROUNDER,comparators.reversed());
+        Comparator comparator = comparatorMap.get(sortField);
         return comparator;
     }
 }
