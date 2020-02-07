@@ -36,6 +36,10 @@ public class IPLLeagueDAO {
 
     }
 
+    public IPLLeagueDAO() {
+
+    }
+
     @Override
     public String toString() {
         return "IPLLeagueDAO{" +

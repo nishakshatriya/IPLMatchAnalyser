@@ -15,5 +15,6 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile 'com.google.code.gson:gson:2.2.+'
     compile "com.opencsv:opencsv:4.0"
-    compile(files("/home/admin1/csvFileBuilder/build/libs/csvFileBuilder-1.0-SNAPSHOT.jar"))
+    compile(files("/home/bridgelabz/Desktop/CSVBuilder-1.0-SNAPSHOT.jar"))
+    testImplementation'org.mockito:mockito-core:3.0+'
 }

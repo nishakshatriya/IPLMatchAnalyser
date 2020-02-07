@@ -1,25 +1,32 @@
 package iplLeague;
 
-import csvFileBuilder.CSVBuilderException;
+import CSVBuilder.CSVBuilderException;
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
 
 public class IPLleagueAnalysis {
+//    private final MockingFactory mockfactory;
+     public MockingFactory mockingFactory = new MockingFactory();
     private Cricket cricket;
-    public enum Cricket {BATSMANS, BOWLERS, BatsmanBowlersCombo}
 
+    public IPLleagueAnalysis(Cricket cricket, MockingFactory mockingFactory) {
+        this.cricket=cricket;
+        this.mockingFactory = mockingFactory;
+    }
 
     public IPLleagueAnalysis(Cricket cricket) {
-        this.cricket = cricket;
+        this.cricket=cricket;
     }
+    public enum Cricket {BATSMANS, BOWLERS, BatsmanBowlersCombo}
 
     Map<String,IPLLeagueDAO> list = new TreeMap<>();
     HashMap <Sorting.sortingFields, Comparator> ComparatorMap = new HashMap<>();
 
+
     public int loadingData(String... csvFilePath) throws IPLException, IOException, CSVBuilderException {
-        list = CricketFactory.loadingData(cricket, csvFilePath);
+        list = mockingFactory.getData(cricket, csvFilePath);
         return list.size();
     }
 

@@ -1,8 +1,8 @@
 package iplLeague;
 
-import csvFileBuilder.CSVBuilderException;
-import csvFileBuilder.CSVBuilderFactory;
-import csvFileBuilder.ICSVBuilder;
+import CSVBuilder.CSVBuilderException;
+import CSVBuilder.CSVBuilderFactory;
+import CSVBuilder.ICSVBuilder;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -20,8 +20,8 @@ public abstract class DataLoader {
         Map<String, IPLLeagueDAO> list = new TreeMap<>();
 
         try (Reader reader = Files.newBufferedReader(Paths.get(String.valueOf(csvFilePath[0])))) {
-            ICSVBuilder icsvBuilder = CSVBuilderFactory.CreateCSVBuilder();
-            List<E> playersList = icsvBuilder.getCSVInList(reader, CSVClass);
+            ICSVBuilder icsvBuilder = CSVBuilderFactory.createCSVBuilder();
+            List<E> playersList = icsvBuilder.getCSVFileList(reader, CSVClass);
             if (CSVClass.getName().equals("iplLeague.Batsmans")) {
                 StreamSupport.stream(playersList.spliterator(), false)
                         .map(Batsmans.class::cast)
