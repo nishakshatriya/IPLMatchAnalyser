@@ -1,6 +1,6 @@
 package iplLeague;
 
-import CSVBuilder.CSVBuilderException;
+
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -25,7 +25,7 @@ public class IPLleagueAnalysis {
     HashMap <Sorting.sortingFields, Comparator> ComparatorMap = new HashMap<>();
 
 
-    public int loadingData(String... csvFilePath) throws IPLException, IOException, CSVBuilderException {
+    public int loadingData(String... csvFilePath) throws IPLException, IOException {
         list = mockingFactory.getData(cricket, csvFilePath);
         return list.size();
     }

@@ -1,6 +1,5 @@
 package iplLeague;
 
-import CSVBuilder.CSVBuilderException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -8,13 +7,13 @@ import java.io.IOException;
 import java.util.List;
 
 public class BowlingTest {
-    private  String MOSTRUNSFILE = "/home/bridgelabz/Desktop/IPLMatchAnalyser/src/test/resources/IPLMOSTRUNDATACSV.csv";
+    private  String MOSTRUNSFILE = "/home/admin1/Desktop/IPLMatchAnalyser/src/test/resources/IPLMOSTRUNDATACSV.csv";
     private String WRONG_RUN_PATH = "./src/main/resources/IndiaStateCensusData.csv";
-    private String WICKET_FILE_CSV = "/home/bridgelabz/Desktop/IPLMatchAnalyser/src/test/resources/IPLMOSTWKTDATA.csv";
+    private String WICKET_FILE_CSV = "/home/admin1/Desktop/IPLMatchAnalyser/src/test/resources/IPLMOSTWKTDATA.csv";
     private String WKT_WRONG_FILE = "./src/main/resources/IndiaStateCensusData.csv";
 
     @Test
-    public void givenWicketFile_ShouldReturnCorrectData() throws IOException, IPLException, CSVBuilderException {
+    public void givenWicketFile_ShouldReturnCorrectData() throws IOException, IPLException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis( IPLleagueAnalysis.Cricket.BOWLERS);
         int totalRecords = ipLleagueAnalysis.loadingData(WICKET_FILE_CSV);
         Assert.assertEquals(99,totalRecords);
@@ -22,7 +21,7 @@ public class BowlingTest {
 
 
     @Test
-    public void givenIncorrectWktRunsFile_ShouldThroughException() throws IPLException, IOException, CSVBuilderException {
+    public void givenIncorrectWktRunsFile_ShouldThroughException() throws IPLException, IOException {
         try {
 
             IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis( IPLleagueAnalysis.Cricket.BOWLERS);
@@ -34,7 +33,7 @@ public class BowlingTest {
     }
 
     @Test
-    public void givenWktFile_ShouldReturnBowlerAvg() throws IPLException, IOException, CSVBuilderException {
+    public void givenWktFile_ShouldReturnBowlerAvg() throws IPLException, IOException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis( IPLleagueAnalysis.Cricket.BOWLERS);
         ipLleagueAnalysis.loadingData(WICKET_FILE_CSV);
         List<Bowlers> data = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.AVG_WKT);
@@ -43,7 +42,7 @@ public class BowlingTest {
     }
 
     @Test
-    public void givenWktFile_ShouldReturnHighestBowlerStrikeRate() throws IPLException, IOException, CSVBuilderException {
+    public void givenWktFile_ShouldReturnHighestBowlerStrikeRate() throws IPLException, IOException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis( IPLleagueAnalysis.Cricket.BOWLERS);
         ipLleagueAnalysis.loadingData(WICKET_FILE_CSV);
         List<Bowlers> data = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.Bowl_SR);
@@ -52,7 +51,7 @@ public class BowlingTest {
     }
 
     @Test
-    public void givenWktFile_ShouldReturnBestEconomyBowler() throws IPLException, IOException, CSVBuilderException {
+    public void givenWktFile_ShouldReturnBestEconomyBowler() throws IPLException, IOException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis( IPLleagueAnalysis.Cricket.BOWLERS);
         ipLleagueAnalysis.loadingData(WICKET_FILE_CSV);
         List<Bowlers> data = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.BEST_ECO);
@@ -60,7 +59,7 @@ public class BowlingTest {
     }
 
     @Test
-    public void givenWktFile_ShouldReturnLeastEconomyBowler() throws IPLException, IOException, CSVBuilderException {
+    public void givenWktFile_ShouldReturnLeastEconomyBowler() throws IPLException, IOException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis( IPLleagueAnalysis.Cricket.BOWLERS);
         ipLleagueAnalysis.loadingData(WICKET_FILE_CSV);
         List<Bowlers> data = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.BEST_ECO);
@@ -69,7 +68,7 @@ public class BowlingTest {
     }
 
     @Test
-    public void givenWktFile_ShouldReturnHighStrikeAnd5wkt4wkt() throws IPLException, IOException, CSVBuilderException {
+    public void givenWktFile_ShouldReturnHighStrikeAnd5wkt4wkt() throws IPLException, IOException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis( IPLleagueAnalysis.Cricket.BOWLERS);
         ipLleagueAnalysis.loadingData(WICKET_FILE_CSV);
         List<Bowlers> data = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.STRIKE_5W_4W);
@@ -77,7 +76,7 @@ public class BowlingTest {
     }
 
     @Test
-    public void givenWktFile_ShouldReturnLeastStrikeAnd5wkt4wkt() throws IPLException, IOException, CSVBuilderException {
+    public void givenWktFile_ShouldReturnLeastStrikeAnd5wkt4wkt() throws IPLException, IOException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis( IPLleagueAnalysis.Cricket.BOWLERS);
         ipLleagueAnalysis.loadingData(WICKET_FILE_CSV);
         List<Bowlers> data = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.STRIKE_5W_4W);
@@ -85,7 +84,7 @@ public class BowlingTest {
     }
 
     @Test
-    public void givenWktFile_ShouldReturnBestBowlingAverageAndStrikeRate() throws IPLException, IOException, CSVBuilderException {
+    public void givenWktFile_ShouldReturnBestBowlingAverageAndStrikeRate() throws IPLException, IOException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis( IPLleagueAnalysis.Cricket.BOWLERS);
         ipLleagueAnalysis.loadingData(WICKET_FILE_CSV);
         List<Bowlers> data = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.BOWL_AVG_STRIKE_RATE);
@@ -93,7 +92,7 @@ public class BowlingTest {
     }
 
     @Test
-    public void givenWktFile_ShouldReturnMaxWktAndBestBowlAvg() throws IPLException, IOException, CSVBuilderException {
+    public void givenWktFile_ShouldReturnMaxWktAndBestBowlAvg() throws IPLException, IOException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis( IPLleagueAnalysis.Cricket.BOWLERS);
         ipLleagueAnalysis.loadingData(WICKET_FILE_CSV);
         List<Bowlers> data = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.MAX_WKT_BEST_BOWLAVG);
@@ -102,7 +101,7 @@ public class BowlingTest {
     }
 
     @Test
-    public void givenWktFile_ShouldReturnMinWKtAndLeastBowlAvg() throws IPLException, IOException, CSVBuilderException {
+    public void givenWktFile_ShouldReturnMinWKtAndLeastBowlAvg() throws IPLException, IOException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis( IPLleagueAnalysis.Cricket.BOWLERS);
         ipLleagueAnalysis.loadingData(WICKET_FILE_CSV,MOSTRUNSFILE);
         List<Bowlers> data = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.MAX_WKT_BEST_BOWLAVG);
@@ -110,7 +109,7 @@ public class BowlingTest {
     }
 
     @Test
-    public void givenBowlBatFile_ShouldReturnBestBatAndBowlPlayer() throws IPLException, IOException, CSVBuilderException {
+    public void givenBowlBatFile_ShouldReturnBestBatAndBowlPlayer() throws IPLException, IOException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis( IPLleagueAnalysis.Cricket.BatsmanBowlersCombo);
         ipLleagueAnalysis.loadingData(MOSTRUNSFILE,WICKET_FILE_CSV);
         List<Bowlers> data = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.BESTBOWL_BAT_AVG);
@@ -118,7 +117,7 @@ public class BowlingTest {
     }
 
     @Test
-    public void givenBowlBatFile_ShouldReturnLeastBatAndBowlAvgPlayer() throws IPLException, IOException, CSVBuilderException {
+    public void givenBowlBatFile_ShouldReturnLeastBatAndBowlAvgPlayer() throws IPLException, IOException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis( IPLleagueAnalysis.Cricket.BatsmanBowlersCombo);
         ipLleagueAnalysis.loadingData(MOSTRUNSFILE,WICKET_FILE_CSV);
         List<Bowlers> data = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.BESTBOWL_BAT_AVG);
@@ -126,7 +125,7 @@ public class BowlingTest {
     }
 
     @Test
-    public void whenGivenTopOfBothRunsAndWickets_shouldReturnAllRounderCricketer() throws IPLException, IOException, CSVBuilderException {
+    public void whenGivenTopOfBothRunsAndWickets_shouldReturnAllRounderCricketer() throws IPLException, IOException {
         IPLleagueAnalysis ipLleagueAnalysis = new IPLleagueAnalysis( IPLleagueAnalysis.Cricket.BatsmanBowlersCombo);
         ipLleagueAnalysis.loadingData(MOSTRUNSFILE,WICKET_FILE_CSV);
         List<Bowlers> data = ipLleagueAnalysis.getSortedFields(Sorting.sortingFields.ALLROUNDER);
